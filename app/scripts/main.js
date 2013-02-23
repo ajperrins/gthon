@@ -13,7 +13,6 @@
   function getFacilityList(http) {
     // todo: replace with xhr call... if we're able to get there...
     return dataBase;
-
   }
 
   window.app = {
@@ -36,20 +35,20 @@
 
     FindController: function ($scope, $http) {
 
-      $http({
-        method: 'GET',
-        url: serverUrl + 'facilities'
-      })
-        .success(
-        function (data) {
-          $scope.facilities = data;
-          updateMarkers($scope.facilities);
-        })
-        .error(function (data, status, headers, config) {
-          alert('error retrieving');
-        });
-      ;
-      //$scope.facilities = getFacilityList($http);
+      //$http({
+      //  method: 'GET',
+      //  url: serverUrl + 'facilities'
+      //})
+      //  .success(
+      //  function (data) {
+      //    $scope.facilities = data;
+      //    updateMarkers($scope.facilities);
+      //  })
+      //  .error(function (data, status, headers, config) {
+      //    alert('error retrieving');
+      //  });
+      //;
+      $scope.facilities = getFacilityList($http);
 
       var mapOptions = {
         center: new google.maps.LatLng(33.74967650, -84.38754899999999),
@@ -86,6 +85,9 @@
         minLength: 5
       });
 
+      var la = parseFloat('33.' + _.random(7, 75));
+      var lo = parseFloat('-84.' + _.random(3, 4));
+
       $scope.record = {
         name: '',
         address_street: '',
@@ -94,9 +96,13 @@
         contact_name: '',
         email: '',
         description: '',
-        lat: Math.random(33, 34),
-        lng: Math.random(-84.5, -84)
+
+        latitude: la,
+        longitude: lo
       };
+
+      //33.7 33.75
+      //-84.3, -84.4
 
       $scope.submitFacility = function () {
         console.log($scope.record);
