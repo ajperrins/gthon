@@ -23,14 +23,17 @@
     },
 
     HomeController: function ($scope, $rootScope) {
+      $scope.goTo = function(value) {
+        $rootScope.setLocation(value);
+      };
     },
 
     FindController: function ($scope, $http) {
-      $http({ method: 'GET', url: '' })
-        .success(function (data) {
-          $scope.facilities = data;
-        });
-      //$scope.facilities = getFacilityList($http);
+      //$http({ method: 'GET', url: '' })
+      //  .success(function (data) {
+      //    $scope.facilities = data;
+      //  });
+      $scope.facilities = getFacilityList($http);
 
       var mapOptions = {
         center: new google.maps.LatLng(33.74967650, -84.38754899999999),
@@ -39,6 +42,15 @@
       };
       var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+
+      function updateMarkers(locations) {
+        
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: "Hello World!"
+        });
+      }
     },
 
     ProvideController: function ($scope, $http) {
