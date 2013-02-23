@@ -6,7 +6,9 @@
         <div class="span4">
             <p>Add some other search criteria here</p>
             <ul class="facilityList">
-                <li ng-repeat="facility in facilities">{{facility.name}}</li>
+                <li ng-repeat="facility in facilities">
+                    <a ng-click="showMarker()">{{facility.name}}</a>
+                </li>
             </ul>
 
         </div>
